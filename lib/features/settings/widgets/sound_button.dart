@@ -1,66 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/services/audio_service.dart';
-import '../../../core/theme/app_theme.dart';
 
-class SoundButton extends StatefulWidget {
+class SoundButton extends StatelessWidget {
   const SoundButton({Key? key}) : super(key: key);
 
   @override
-  State<SoundButton> createState() => _SoundButtonState();
-}
-
-class _SoundButtonState extends State<SoundButton> {
-  bool _isEnabled = true;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final audioService = Provider.of<AudioService>(context, listen: false);
-      setState(() {
-        _isEnabled = audioService.isSoundEnabled;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Consumer<AudioService>(
       builder: (context, audioService, child) {
         return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: theme.colorScheme.primary.withOpacity(0.3),
+            color: Colors.white.withOpacity(0.1),
             borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.2),
+              width: 1,
+            ),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Ses',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: Colors.white,
-                ),
+              Row(
+                children: [
+                  Icon(
+                    audioService.isSoundEnabled
+                        ? Icons.volume_up
+                        : Icons.volume_off,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    'Ses',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8),
-              Switch(
-                value: _isEnabled,
+              Switch.adaptive(
+                value: audioService.isSoundEnabled,
                 onChanged: (value) async {
-                  setState(() {
-                    _isEnabled = value;
-                  });
                   await audioService.toggleSound();
                 },
-                activeColor: theme.colorScheme.primary,
-                inactiveTrackColor: theme.colorScheme.primary.withOpacity(0.5),
-              ),
-              Text(
-                _isEnabled ? 'Açık' : 'Kapalı',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white70,
-                ),
+                activeColor: Colors.white,
+                activeTrackColor: Colors.green.withOpacity(0.5),
+                inactiveThumbColor: Colors.white70,
+                inactiveTrackColor: Colors.red.withOpacity(0.3),
               ),
             ],
           ),

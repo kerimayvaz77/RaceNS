@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AudioService extends ChangeNotifier {
+class AudioService extends ChangeNotifier with WidgetsBindingObserver {
   static const String _backgroundMusicPath =
       'assets/audio/background_music.mp3';
   static const String _musicEnabledKey = 'music_enabled';
@@ -10,11 +11,38 @@ class AudioService extends ChangeNotifier {
   final AudioPlayer _backgroundMusicPlayer = AudioPlayer();
   bool _isMusicEnabled = true;
   bool _isInitialized = false;
+  bool _wasPlayingBeforePause = false;
 
   bool get isMusicEnabled => _isMusicEnabled;
 
   AudioService() {
     _loadMusicState();
+    // Observer'ı kaydet
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint('App yaşam döngüsü durumu değişti: $state');
+    switch (state) {
+      case AppLifecycleState.paused:
+        // Uygulama arka plana geçtiğinde veya ekran kapandığında
+        _wasPlayingBeforePause = _backgroundMusicPlayer.playing;
+        if (_wasPlayingBeforePause) {
+          stopBackgroundMusic();
+          debugPrint('Uygulama arka planda: Müzik duraklatıldı');
+        }
+        break;
+      case AppLifecycleState.resumed:
+        // Uygulama tekrar açıldığında
+        if (_wasPlayingBeforePause && _isMusicEnabled) {
+          playBackgroundMusic();
+          debugPrint('Uygulama tekrar açıldı: Müzik devam ediyor');
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   Future<void> _loadMusicState() async {
@@ -99,6 +127,8 @@ class AudioService extends ChangeNotifier {
 
   @override
   void dispose() {
+    // Observer'ı kaldır
+    WidgetsBinding.instance.removeObserver(this);
     _backgroundMusicPlayer.dispose();
     _isInitialized = false;
     super.dispose();

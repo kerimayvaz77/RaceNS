@@ -104,37 +104,32 @@ flutter run
 - 🚀 Performans optimizasyonları yapıldı
 - 🐛 Hata düzeltmeleri
 
-## 🆕 Yeni Güncellemeler (v1.0.8)
+### Versiyon 1.0.9
+- 🎨 Responsive tasarım iyileştirmeleri:
+  - Tüm ekran boyutlarına uyumlu hale getirildi
+  - Dinamik font boyutları eklendi
+  - Ekran oranlarına göre otomatik ölçeklendirme
+  - SafeArea ve MediaQuery optimizasyonları
+  - iPhone ve Android cihazlar için özel düzenlemeler
 
-### 🎨 Uygulama İkonu Güncellemesi
-- Modern ve minimalist tasarımlı yeni uygulama ikonu
-- Adaptive icon desteği (Android için)
-- Özel mor tema rengi (#6A1B9A)
-- iOS ve Android platformları için optimize edilmiş ikonlar
+- 🔊 Ses sistemi güncellemeleri:
+  - Ekran kapandığında müzik otomatik durma özelliği
+  - Uygulama arka plandayken müzik kontrolü
+  - Müzik durumu hafıza sistemi iyileştirmesi
+  - Ses seviyesi optimizasyonu
 
-### 📱 Platform Özellikleri
-- Android:
-  - Minimum SDK: 21
-  - Hedef SDK: 34
-  - Derleme SDK: 34
-  - ProGuard optimizasyonları
-  - Multidex desteği
+- 🛠️ Teknik iyileştirmeler:
+  - ScreenUtil implementasyonu güncellendi
+  - Widget ağacı optimizasyonu
+  - Bellek yönetimi iyileştirmeleri
+  - AppLifecycleState entegrasyonu
+  - Tema ve renk sistemi güncellemesi
 
-- iOS:
-  - Minimum versiyon: 12.0
-  - Optimize edilmiş performans
-  - Native entegrasyonlar
-
-### 🔒 Güvenlik Güncellemeleri
-- Geliştirilmiş ProGuard kuralları
-- Kod karıştırma ve küçültme optimizasyonları
-- Güvenli imzalama yapılandırması
-
-### 🛠️ Teknik İyileştirmeler
-- Flutter 3.16.0+ desteği
-- Dart SDK 3.2.6+ uyumluluğu
-- Paket bağımlılıkları güncellendi
-- Performans optimizasyonları
+- 📱 Kullanıcı deneyimi iyileştirmeleri:
+  - Daha akıcı animasyonlar
+  - Geliştirilmiş dokunmatik geri bildirim
+  - Optimize edilmiş yükleme süreleri
+  - Daha iyi hata yönetimi
 
 ## 👨‍💻 Geliştirici
 

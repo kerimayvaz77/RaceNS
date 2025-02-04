@@ -54,8 +54,11 @@ class _MenuPageState extends State<MenuPage>
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
+        width: screenSize.width,
+        height: screenSize.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -67,12 +70,15 @@ class _MenuPageState extends State<MenuPage>
           ),
         ),
         child: Stack(
+          fit: StackFit.expand,
           children: [
             // Arka plan resmi
             Positioned.fill(
               child: Image.asset(
                 'assets/images/racing_background.jpg',
                 fit: BoxFit.cover,
+                width: screenSize.width,
+                height: screenSize.height,
               ),
             ),
             // Karartma katmanı
@@ -82,153 +88,154 @@ class _MenuPageState extends State<MenuPage>
               ),
             ),
             // İçerik
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Animasyonlu Başlık
-                AnimatedBuilder(
-                  animation: _titleController,
-                  builder: (context, child) {
-                    return Transform.scale(
-                      scale: _scaleAnimation.value,
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 50.h),
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Text(
-                          'YARIŞA\nHAZIR MISIN?',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.pressStart2p(
-                            fontSize: 32.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            height: 1.5,
-                            shadows: [
-                              // İç parlama efekti
-                              Shadow(
-                                color: Colors.purple
-                                    .withOpacity(_glowAnimation.value * 0.5),
-                                blurRadius: 20,
+            SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 50.h),
+                        // Animasyonlu Başlık
+                        AnimatedBuilder(
+                          animation: _titleController,
+                          builder: (context, child) {
+                            return Transform.scale(
+                              scale: _scaleAnimation.value,
+                              child: Text(
+                                'YARIŞA\nHAZIR MISIN?',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.pressStart2p(
+                                  fontSize:
+                                      screenSize.width < 360 ? 24.sp : 32.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  height: 1.5,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.purple.withOpacity(
+                                          _glowAnimation.value * 0.5),
+                                      blurRadius: 20,
+                                    ),
+                                    Shadow(
+                                      color: Colors.black,
+                                      offset: Offset(2.w, 2.h),
+                                      blurRadius: 4,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              // Dış gölge
-                              Shadow(
-                                color: Colors.black,
-                                offset: const Offset(2, 2),
-                                blurRadius: 4,
-                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 30.h),
+                        // Butonlar
+                        _buildAnimatedButton(
+                          context: context,
+                          icon: FontAwesomeIcons.play,
+                          text: 'OYUNU BAŞLAT',
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.green[700]!,
+                              Colors.green[900]!,
                             ],
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                // Butonlar
-                _buildAnimatedButton(
-                  context: context,
-                  icon: FontAwesomeIcons.play,
-                  text: 'OYUNU BAŞLAT',
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.green[700]!,
-                      Colors.green[900]!,
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const GamePage(),
-                      ),
-                    );
-                  },
-                ),
-
-                SizedBox(height: 20.h),
-
-                // Ayarlar Butonu
-                _buildAnimatedButton(
-                  context: context,
-                  icon: FontAwesomeIcons.gear,
-                  text: 'AYARLAR',
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.amber[600]!,
-                      Colors.amber[900]!,
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SettingsPage(),
-                      ),
-                    );
-                  },
-                ),
-
-                SizedBox(height: 20.h),
-
-                // Çıkış Butonu
-                _buildAnimatedButton(
-                  context: context,
-                  icon: FontAwesomeIcons.rightFromBracket,
-                  text: 'ÇIKIŞ',
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.red[700]!,
-                      Colors.red[900]!,
-                    ],
-                  ),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        backgroundColor: Colors.purple[900],
-                        title: Text(
-                          'Çıkış',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        content: Text(
-                          'Oyundan çıkmak istediğinize emin misiniz?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                          ),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text(
-                              'İPTAL',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const GamePage(),
                               ),
-                            ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 20.h),
+                        _buildAnimatedButton(
+                          context: context,
+                          icon: FontAwesomeIcons.gear,
+                          text: 'AYARLAR',
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.amber[600]!,
+                              Colors.amber[900]!,
+                            ],
                           ),
-                          TextButton(
-                            onPressed: () {
-                              SystemNavigator.pop();
-                            },
-                            child: Text(
-                              'ÇIKIŞ',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SettingsPage(),
                               ),
-                            ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 20.h),
+                        _buildAnimatedButton(
+                          context: context,
+                          icon: FontAwesomeIcons.rightFromBracket,
+                          text: 'ÇIKIŞ',
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.red[700]!,
+                              Colors.red[900]!,
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                backgroundColor: Colors.purple[900],
+                                title: Text(
+                                  'Çıkış',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                content: Text(
+                                  'Oyundan çıkmak istediğinize emin misiniz?',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      'İPTAL',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      SystemNavigator.pop();
+                                    },
+                                    child: Text(
+                                      'ÇIKIŞ',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 50.h),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
+              ),
             ),
           ],
         ),
