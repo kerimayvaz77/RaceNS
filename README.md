@@ -104,6 +104,38 @@ flutter run
 - 🚀 Performans optimizasyonları yapıldı
 - 🐛 Hata düzeltmeleri
 
+## 🆕 Yeni Güncellemeler (v1.0.8)
+
+### 🎨 Uygulama İkonu Güncellemesi
+- Modern ve minimalist tasarımlı yeni uygulama ikonu
+- Adaptive icon desteği (Android için)
+- Özel mor tema rengi (#6A1B9A)
+- iOS ve Android platformları için optimize edilmiş ikonlar
+
+### 📱 Platform Özellikleri
+- Android:
+  - Minimum SDK: 21
+  - Hedef SDK: 34
+  - Derleme SDK: 34
+  - ProGuard optimizasyonları
+  - Multidex desteği
+
+- iOS:
+  - Minimum versiyon: 12.0
+  - Optimize edilmiş performans
+  - Native entegrasyonlar
+
+### 🔒 Güvenlik Güncellemeleri
+- Geliştirilmiş ProGuard kuralları
+- Kod karıştırma ve küçültme optimizasyonları
+- Güvenli imzalama yapılandırması
+
+### 🛠️ Teknik İyileştirmeler
+- Flutter 3.16.0+ desteği
+- Dart SDK 3.2.6+ uyumluluğu
+- Paket bağımlılıkları güncellendi
+- Performans optimizasyonları
+
 ## 👨‍💻 Geliştirici
 
 Kerim AYVAZ
