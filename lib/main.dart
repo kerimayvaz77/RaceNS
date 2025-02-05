@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/services/audio_service.dart';
-import 'features/menu/pages/menu_page.dart';
+import 'features/splash/pages/splash_video_page.dart';
 import 'core/theme/app_theme.dart';
 
 void main() {
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
               child: widget!,
             );
           },
-          home: const MenuPage(),
+          home: const SplashVideoPage(),
         );
       },
     );

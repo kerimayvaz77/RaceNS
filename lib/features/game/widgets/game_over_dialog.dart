@@ -96,10 +96,10 @@ class _GameOverDialogState extends State<GameOverDialog>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     // Game Over Animasyonu
-                    Lottie.network(
-                      'https://assets2.lottiefiles.com/packages/lf20_pqnfmone.json',
-                      height: 120.h,
-                      repeat: true,
+                    Icon(
+                      Icons.error_outline,
+                      size: 80.w,
+                      color: Colors.red,
                     ),
 
                     SizedBox(height: 20.h),

@@ -1,7 +1,8 @@
-# 🏎️ Mobil Araba Yarışı Oyunu
+# 🏎️ Mobil Araba Yarışı Oyunu v1.2.5
 
 ![Flutter Version](https://img.shields.io/badge/Flutter-3.x-blue)
 ![Dart Version](https://img.shields.io/badge/Dart-3.x-blue)
+![Version](https://img.shields.io/badge/Version-1.2.5-green)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ## 📱 Proje Hakkında
@@ -10,6 +11,7 @@ Bu proje, modern ve eğlenceli bir mobil araba yarışı oyunudur. Flutter kulla
 
 ### 🎮 Özellikler
 
+- 🎥 Özel splash video ekranı
 - 🚗 Modern ve şık araba tasarımları
 - 🎵 Arka plan müziği kontrolü
 - 🏆 Yüksek skor sistemi
@@ -28,6 +30,26 @@ Bu proje, modern ve eğlenceli bir mobil araba yarışı oyunudur. Flutter kulla
 - 🎨 Custom Paint (Özel çizimler)
 - 🎵 Audio Service (Ses yönetimi)
 - 📦 GetIt (Bağımlılık enjeksiyonu)
+- 🎥 Video Player (Splash video)
+
+### Son Güncellemeler (v1.0.9)
+
+#### 🎥 Splash Video Ekranı
+- Özel açılış videosu eklendi
+- Video Player entegrasyonu
+- Tam ekran video desteği
+- Otomatik menü geçişi
+
+#### 🎵 Ses Sistemi İyileştirmeleri
+- Arka plan müziği optimizasyonu
+- Ses durumu hafıza sistemi
+- Uygulama yaşam döngüsü entegrasyonu
+
+#### 🎨 UI/UX Geliştirmeleri
+- Responsive tasarım iyileştirmeleri
+- Dinamik font boyutları
+- Ekran oranlarına uyum
+- SafeArea optimizasyonları
 
 ### Mimari
 
@@ -45,6 +67,8 @@ lib/
   │   │   ├── models/
   │   │   ├── pages/
   │   │   └── widgets/
+  │   ├── splash/
+  │   │   └── pages/
   │   └── settings/
   │       ├── pages/
   │       └── widgets/
@@ -89,22 +113,45 @@ flutter run
 - ✅ Android
 - ✅ iOS
 
-## 🎮 Nasıl Oynanır?
+## �� Nasıl Oynanır?
 
-1. 🎯 Parmağınızı ekranda sağa veya sola kaydırarak arabayı kontrol edin
-2. 🚗 Diğer arabalardan kaçının
-3. ⭐ Mümkün olduğunca uzun süre hayatta kalın
-4. 🏆 Yüksek skor yapmaya çalışın
+1. 🎥 Açılış videosunu izleyin
+2. 🎯 Parmağınızı ekranda sağa veya sola kaydırarak arabayı kontrol edin
+3. 🚗 Diğer arabalardan kaçının
+4. ⭐ Mümkün olduğunca uzun süre hayatta kalın
+5. 🏆 Yüksek skor yapmaya çalışın
 
 ## 🔄 Güncellemeler
 
-### Versiyon 1.0.8
-- ✨ Modern araba tasarımları eklendi
-- 🎵 Ses sistemi iyileştirildi
-- 🚀 Performans optimizasyonları yapıldı
-- 🐛 Hata düzeltmeleri
+### Versiyon 1.2.5
+- 🎥 Splash video sistemi iyileştirildi:
+  - Video tam ekran desteği
+  - Otomatik geçiş sistemi optimize edildi
+  - Video performansı artırıldı
+  - Hata yakalama mekanizması geliştirildi
+
+- 🎮 Oyun deneyimi iyileştirmeleri:
+  - Araba kontrolleri hassaslaştırıldı
+  - Çarpışma sistemi geliştirildi
+  - Skor sistemi optimize edildi
+
+- 🔧 Teknik iyileştirmeler:
+  - Bellek kullanımı optimize edildi
+  - Performans iyileştirmeleri yapıldı
+  - Hata ayıklama sistemi geliştirildi
 
 ### Versiyon 1.0.9
+- 🎥 Splash video ekranı eklendi:
+  - Özel açılış videosu
+  - Tam ekran video desteği
+  - Otomatik menü geçişi
+  
+- 🎵 Ses sistemi güncellemeleri:
+  - Ekran kapandığında müzik otomatik durma özelliği
+  - Uygulama arka plandayken müzik kontrolü
+  - Müzik durumu hafıza sistemi iyileştirmesi
+  - Ses seviyesi optimizasyonu
+
 - 🎨 Responsive tasarım iyileştirmeleri:
   - Tüm ekran boyutlarına uyumlu hale getirildi
   - Dinamik font boyutları eklendi
@@ -112,24 +159,12 @@ flutter run
   - SafeArea ve MediaQuery optimizasyonları
   - iPhone ve Android cihazlar için özel düzenlemeler
 
-- 🔊 Ses sistemi güncellemeleri:
-  - Ekran kapandığında müzik otomatik durma özelliği
-  - Uygulama arka plandayken müzik kontrolü
-  - Müzik durumu hafıza sistemi iyileştirmesi
-  - Ses seviyesi optimizasyonu
-
 - 🛠️ Teknik iyileştirmeler:
   - ScreenUtil implementasyonu güncellendi
   - Widget ağacı optimizasyonu
   - Bellek yönetimi iyileştirmeleri
   - AppLifecycleState entegrasyonu
   - Tema ve renk sistemi güncellemesi
-
-- 📱 Kullanıcı deneyimi iyileştirmeleri:
-  - Daha akıcı animasyonlar
-  - Geliştirilmiş dokunmatik geri bildirim
-  - Optimize edilmiş yükleme süreleri
-  - Daha iyi hata yönetimi
 
 ## 👨‍💻 Geliştirici
 
